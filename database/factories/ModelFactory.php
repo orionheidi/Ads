@@ -4,6 +4,9 @@
 use App\User;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
+use App\Category;
+use App\SubCategory;
+use App\SubSubCategory;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +28,7 @@ $factory->define(User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
     ];
 });
+
+
+
 

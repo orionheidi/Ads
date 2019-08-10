@@ -19,7 +19,7 @@ class CreateAdsTable extends Migration
             $table->text('description');
             $table->decimal('price');
             $table->string('condition');
-            $table->string('url');
+            $table->string('path');
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('phone');

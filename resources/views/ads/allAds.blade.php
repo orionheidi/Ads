@@ -19,9 +19,7 @@
             @if($ad->user)
                 Created by: <h4 class="blog-post-title"> {{ $ad->user->name }}</h4>
             @endif
-        
             {{-- <p class="blog-post-meta"> Product Name: {{ $ad->product->name }}</p> --}}
-           
             <form method="POST" action="{{route('destroy', ['id' => $ad->id])}}">
                 @csrf
                 @method('DELETE')

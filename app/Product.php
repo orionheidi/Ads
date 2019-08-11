@@ -10,8 +10,8 @@ class Product extends Model
         'name'
     ];
 
-    // public function ad()
-    // {
-    //     return $this->belongsTo('App\Ad');
-    // }
+    public function ad()
+    {
+        return $this->belongsTo('App\Ad');
+    }
 }

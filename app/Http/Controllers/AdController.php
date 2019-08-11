@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Ad;
 use App\Product;
 use App\User;
+use Carbon\Carbon;
 
 class AdController extends Controller
 {
@@ -15,10 +16,20 @@ class AdController extends Controller
         $ads = Ad::with('user')->paginate(15);
         return view('ads.allAds',compact('ads'));
     }
+
+    
+    public function show($id)
+    {
+        $ad = Ad::with('user')->findOrFail($id);
+        // $product = Product::findOrFail($ad->id);
+        return view('ads.singleAd',compact('ad'));
+    }
+
     public function create()
     {
         return view('ads.create');
     }
+
     public function store(Request $request)
     {
         $this->validate($request,
@@ -58,7 +69,61 @@ class AdController extends Controller
         $product->save();
 
         session()->flash('success_message', 'Article successfully created!');
-        return back()->with('success_message', 'Article successfully created!');
+        return redirect('allAds')->with('success_message', 'Article successfully created!');
     }
 
+    public function destroy($id)
+    {
+        $ad = Ad::findOrFail($id);
+        $ad->delete();
+        return redirect('allAds')->with('success', 'Ad successfully deleted!');
+    }
+
+    public function edit($id)
+    {
+        $ad = Ad::with('user','product')->findOrFail($id);
+        return view('ads.edit',compact('ad'));
+    }
+
+    public function update(Request $request, $id)
+    {
+
+    $this->validate($request,
+    [
+        'title' => 'required|min:2|max:255',
+        'description' => 'required|string|max:1000',
+        'price' => 'required',
+        'condition' => 'required',
+        'phone' => 'required',
+        'location' => 'required',
+         'name' => 'required'
+    ]);
+
+    $data = Ad::findOrFail($id);
+    $data->update($request->all());
+
+   if ($request->hasFile('file'))
+   {
+           $file = $request->file('file');
+           $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString()); 
+           $name = $timestamp. '-' .$file->getClientOriginalName();
+           $data->path = $name;
+           $file->move(public_path().'/images/', $name);   
+           $data->save();                  
+       }  
+
+        $product = $data->product;
+    
+        // $product = new Product;
+        $product->ad_id = $data->id;
+       
+        $product->name = $request->input('name');
+   
+        $product->save();
+   
+
+    session()->flash('success_message', 'Article successfully updated!');
+    return redirect('allAds')->with('success_message', 'Article successfully updated!');
+
+    }
 }

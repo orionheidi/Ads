@@ -8,9 +8,10 @@
                 Created by: <h5 class="blog-post-title"> {{ $ad->user->name }}</h5>
             @endif
                 Created at: <div>{{  $ad->created_at  }}</div>
-            <div>{{  $ad->description  }}</div>
+             <div>Description: {{  $ad->description  }}</div>
+             {{-- <p class="blog-post-meta">Product Name: {{ $product->name }}</p> --}}
                 <br>
-                <form method="POST" action="{{route('destroy', ['id' => $d->id])}}">
+                <form method="POST" action="{{route('destroy', ['id' => $ad->id])}}">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete Ad</button>
@@ -18,16 +19,14 @@
                 <form method="PUT" action="{{route('edit', ['id' => $ad->id])}}">
                         @csrf
                         {{-- @csrf --}}
-                        <button type="submit" id="editArticle" class="btn btn-success">Edit Article</button>
+                        <button type="submit" id="editArticle" class="btn btn-success">Edit Ad</button>
                 </form>
                 <br>
-                    <img src="{{ $article->url }}" height="400" />
+                    <img src="{{ $ad->path }}" height="400" />
                     <p></p>
-            @foreach($article->photos as $photo)
-            @if($photo)
-                <img src="{{ $photo->urlExtra }}" height="200" /></hr>
-            @endif
-            @endforeach
+                    <p class="blog-post-meta">Location: {{ $ad->location }}</p>
+                    <p class="blog-post-meta">Phone: {{ $ad->phone }}</p>
+                    <p class="blog-post-meta">Price: {{ $ad->price }}</p>
             <hr/> 
             </div>           
         </div>

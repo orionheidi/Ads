@@ -8,6 +8,8 @@ class Ad extends Model
 {
     public $directory = "/images/";
 
+    const CONDITIONS = ['new','used'];
+
     protected $fillable = [
         'title','description','price','condition','url','user_id','phone','location'
     ];
@@ -18,6 +20,11 @@ class Ad extends Model
 
     public function product(){
         return $this->hasOne('App\Product');
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class,'category_id');
     }
 
     public function getPathAttribute($value){

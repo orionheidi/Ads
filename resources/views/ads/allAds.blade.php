@@ -46,4 +46,11 @@
             </div>           
     </div>
 </div> 
+{{-- <div class="form-group">
+        <label for="title" class="control-block">Find Category for the Ad:</label>
+        <select class="form-control">
+            @foreach($ads as $ad)
+            <option value="{{ $ad->category->id }}">{{ $ad->category->name }}</option>
+            @endforeach
+</select> --}}
 @endsection

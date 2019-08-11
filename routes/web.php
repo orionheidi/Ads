@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/create', 'AdController@create')->name('create')->middleware('auth');
 Route::post('/create', 'AdController@store')->name('store')->middleware('auth');

@@ -66,6 +66,13 @@
             <input id="name" name="name" type="text" class="form-control" value="{{ old('name') }}" autofocus>
         </div>
         </div>
+        <div class="form-group row">
+            <select name="category">
+                @foreach ( $categories as $category )
+                  <option value="{{$category->id}}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+        </div>
         <br>
         <div class="form-group row">
             <div class="offset-4 col-8">

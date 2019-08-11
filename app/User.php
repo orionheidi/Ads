@@ -43,6 +43,12 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Role');
     }
 
+
+    public function ads()
+    {
+        return $this->hasMany(Ad::class);
+    }
+
     public function assignRole(Role $role)
     {
         return $this->roles()->save($role);

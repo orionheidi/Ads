@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\Ad;
 use App\Product;
 use App\User;
+use App\Category;
 use Carbon\Carbon;
+// use App\Http\Controllers\Auth;
+use Auth;
 
 class AdController extends Controller
 {
@@ -27,7 +30,8 @@ class AdController extends Controller
 
     public function create()
     {
-        return view('ads.create');
+        $categories = Category::all();
+        return view('ads.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -61,6 +65,13 @@ class AdController extends Controller
         $ad->phone = $request->phone;
         $ad->location = $request->location;
         $ad->user_id = auth()->user()->id;
+        $category = $request['category'];
+        $ad->categories()->attach($category);
+        // $ad->categories()->attach($request->category_id);
+        // $category_name = $ad->category->name;
+        // $category = (int)$data['category'];
+        // // $category = $ad->category;
+        // $ad->category()->attach($category);
         $ad->save();
 
         $product = new Product();
@@ -75,14 +86,23 @@ class AdController extends Controller
     public function destroy($id)
     {
         $ad = Ad::findOrFail($id);
-        $ad->delete();
-        return redirect('allAds')->with('success', 'Ad successfully deleted!');
+        if( Auth::user()->id==$ad->user->id){
+            $ad->delete();
+            return redirect('allAds')->with('success', 'Ad successfully deleted!');
+        }else{
+            return redirect('allAds')->withErrors(['msg', 'Cant delete ad, because you are not the owner!']);
+        }
+       
     }
 
     public function edit($id)
     {
         $ad = Ad::with('user','product')->findOrFail($id);
-        return view('ads.edit',compact('ad'));
+        if( Auth::user()->id==$ad->user->id){
+            return view('ads.edit',compact('ad'));
+        }else{
+            return redirect('/allAds');
+        }
     }
 
     public function update(Request $request, $id)

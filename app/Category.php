@@ -12,7 +12,7 @@ class Category extends Model
     
     public function ads()
     {
-        return $this->hasMany(Ad::class,'category_id', 'ad_id');
+        return $this->belongsToMany('App\Ad','category_ads','ad_id','category_id');
     }
 
     // public function categories() {

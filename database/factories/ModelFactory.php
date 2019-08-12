@@ -42,6 +42,12 @@ $factory->define(App\Ad::class, function(Faker $faker){
     ];
  });
 
+ $factory->define(App\Product::class, function(Faker $faker){       
+    return[
+        "name" => App\Product::PRODUCTS[rand(0,count(App\Product::PRODUCTS) - 1)],
+    ];
+ });
+
  
     $factory->define(App\RoleUser::class, function (Faker $faker) {
         return [

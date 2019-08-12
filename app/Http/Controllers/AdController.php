@@ -16,7 +16,7 @@ class AdController extends Controller
     
     public function index()
     {
-        $ads = Ad::with('user')->paginate(15);
+        $ads = Ad::with('user','product')->paginate(15);
         $categories = Category::all();
         return view('ads.allAds',compact('ads','categories'));
     }

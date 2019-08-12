@@ -12,9 +12,10 @@
                     {{ session('success') }}
                 </div>
             @endif
-            @foreach ($ads->categories as $category)
+            @foreach ($ads as $ad)
                 <p></p>
                 <h4 class="blog-post-title"><a href="{{ route('single-ad',['id' => $ad->id]) }}"> {{ $ad->title }}</a></h4>
+                Category Name: <p class="blog-post-meta"> {{ $category->name }}</p>
                 <p class="blog-post-meta"> {{ $ad->created_at }}</p>
             @if($ad->user)
                 Created by: <h4 class="blog-post-title"> {{ $ad->user->name }}</h4>

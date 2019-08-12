@@ -16,14 +16,14 @@
         </ul>
     </div>
     @endif
-    <form method="POST" action="{{ route('update-ad', ['id' => $ad->id]) }}" id="editForm" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('update-ad', ['id' => $ad->id]) }}" id="editForm" enctype="multipart/form-data">
     @csrf
     @method('PUT')
-    <input type="hidden" name="id" id="id" value="{{ $ad->id}}">
+        <input type="hidden" name="id" id="id" value="{{ $ad->id}}">
         <div class="form-group row">
-        <label for="text" class="col-4 col-form-label">Title</label>
+            <label for="text" class="col-4 col-form-label">Title</label>
         <div class="col-8">
-        <input id="title" name="title" type="text" class="form-control" value="{{ old('title') }}" autofocus>
+            <input id="title" name="title" type="text" class="form-control" value="{{ old('title') }}" autofocus>
         </div>
         </div>
         <div class="form-group row">
@@ -33,15 +33,9 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="text" class="col-4 col-form-label">Price</label>
-            <div class="col-8">
-            <input id="price" type="number" step=".01" class="form-control" name="price" value="{{ old('price') }}" autofocus>
-        </div>
-        </div>
-        <div class="form-group row">
             <label for="file" class="col-4 col-form-label">File</label>
             <div class="col-8">
-            <input id="file" name="file" type="file" class="form-control-file">
+                <input id="file" name="file" type="file" class="form-control-file">
             </div>
         </div>
         <div class="form-group row">
@@ -49,25 +43,31 @@
             <div class="col-8">
             <input id="phone" type="number" class="form-control" name="phone" value="{{ old('phone') }}" autofocus>
         </div>
-    </div>
+        </div>
         <div class="form-group row">
             <label for="text" class="col-4 col-form-label">Location</label>
             <div class="col-8">
-            <input id="location" name="location" type="text" class="form-control" value="{{ old('location') }}" autofocus>
+                <input id="location" name="location" type="text" class="form-control" value="{{ old('location') }}" autofocus>
         </div>
         </div>
         <div class="form-group row">
             <label for="text" class="col-4 col-form-label">Condition</label>
             <div class="col-8">
-            <input id="condition" name="condition" type="text" class="form-control" value="{{ old('condition') }}" autofocus>
+                <input id="condition" name="condition" type="text" class="form-control" value="{{ old('condition') }}" autofocus>
         </div>
         </div>
         <div class="form-group row">
             <label for="text" class="col-4 col-form-label">Product Name</label>
             <div class="col-8">
-            <input id="name" name="name" type="text" class="form-control" value="{{ old('name') }}" autofocus>
+                <input id="name" name="name" type="text" class="form-control" value="{{ old('name') }}" autofocus>
         </div>
         </div>
+        {{-- <div class="form-group row">
+            <label for="text" class="col-4 col-form-label">Price</label>
+            <div class="col-8">
+            <input id="price" type="number" step=".01" class="form-control" name="price" value="{{ old('price') }}" autofocus>
+        </div>
+        </div> --}}
         <br>
         <div class="form-group row">
             <div class="offset-4 col-8">

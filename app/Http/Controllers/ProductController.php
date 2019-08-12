@@ -28,7 +28,6 @@ class ProductController extends Controller
       $cart->add($product, $product->id);
 
       $request->session()->put('cart',$cart);
-      // dd($request->session()->get('cart'));
       return view('shop.shopping-cart',['products' =>$cart->items,'totalPrice'=> $cart->totalPrice,'product']);
       }
       else {

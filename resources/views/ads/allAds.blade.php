@@ -30,9 +30,9 @@
                     <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li>@foreach($categories as $category)
-                            <a href="{{URL::route('category-ads',$category->id)}}">
-                                <option value="{{$category->id}}">{{ $category->name }}</option>
-                            </a>
+                        <a href="{{URL::route('category-ads',$category->id)}}">
+                            <option value="{{$category->id}}">{{ $category->name }}</option>
+                        </a>
                         @endforeach
                     </li>
                 </ul>
@@ -45,10 +45,10 @@
             @if($ad->user)
                 Created by: <h4 class="blog-post-title"><a href="{{ route('user-details',['id' => $ad->user->id]) }}"> {{ $ad->user->name }}</a></h4>
             @endif
-            <p class="blog-post-meta"> Product Name: {{ $product->name }}</p>
-            <p class="blog-post-meta"> Product Price: {{ $product->price }}</p>
+                <p class="blog-post-meta"> Product Name: {{ $product->name }}</p>
+                <p class="blog-post-meta"> Product Price: {{ $product->price }}</p>
             <div class="clearfix">
-                    <a href="{{ route('product-add-cart',['id' => $product->id]) }}" class="btn btn-dark pull-right" role="button">Add to Cart</a>
+                <a href="{{ route('product-add-cart',['id' => $product->id]) }}" class="btn btn-dark pull-right" role="button">Add to Cart</a>
             </div>
             <form method="POST" action="{{route('destroy', ['id' => $ad->id])}}">
                 @csrf
@@ -58,13 +58,10 @@
             <br>
             <form method="PUT" action="{{route('edit', ['id' => $ad->id])}}">
                     @csrf
-                    {{-- @csrf --}}
                     <button type="submit" id="editAd" class="btn btn-success">Edit Ad</button>
             </form>
             <br>
-            {{-- <h4 class="blog-post-title"> Product Name: {{ $ad->product->name }}</h4> --}}
                 <h6 class="border-bottom">Description: {{ $ad->description }}</h6>
-                {{-- <p class="blog-post-meta">Price: {{ $ad->price }}</p> --}}
                 <div class="image-container">
                     <img height="200" src="{{$ad->path}}" alt="">
                     </div>

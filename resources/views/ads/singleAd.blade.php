@@ -11,26 +11,28 @@
                 <br>
                 <h5 class="blog-post-title">Product: {{  $ad->product->name  }}</h5>
                 <p class="blog-post-meta">Price: {{ $ad->product->price }}</p>
+                <div class="clearfix">
+                    <a href="{{ route('product-add-cart',['id' => $product->id]) }}" class="btn btn-dark pull-right" role="button">Add to Cart</a>
+                </div>
+                <br>
                 <div>Description: {{  $ad->description  }}</div>
-             {{-- <p class="blog-post-meta">Product Name: {{ $product->name }}</p> --}}
                 <br>
                 <form method="POST" action="{{route('destroy', ['id' => $ad->id])}}">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete Ad</button>
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete Ad</button>
                 </form>
                 <br>
                 <form method="PUT" action="{{route('edit', ['id' => $ad->id])}}">
-                        @csrf
-                        {{-- @csrf --}}
-                        <button type="submit" id="editArticle" class="btn btn-success">Edit Ad</button>
+                    @csrf
+                    <button type="submit" id="editArticle" class="btn btn-success">Edit Ad</button>
                 </form>
                 <br>
                     <img src="{{ $ad->path }}" height="400" />
                     <p></p>
                     <p class="blog-post-meta">Location: {{ $ad->location }}</p>
                     <p class="blog-post-meta">Phone: {{ $ad->phone }}</p>
-            <hr/> 
+                <hr/> 
             </div>           
         </div>
     </main>   

@@ -8,7 +8,6 @@ use App\Product;
 use App\User;
 use App\Category;
 use Carbon\Carbon;
-// use App\Http\Controllers\Auth;
 use Auth;
 
 class AdController extends Controller
@@ -20,7 +19,6 @@ class AdController extends Controller
         $categories = Category::all();
         foreach($ads as $ad){
         $product = Ad::find($ad->id)->product;
-        // dd($product->name);
         }
         return view('ads.allAds',compact('ads','categories','product'));
     }
@@ -31,7 +29,6 @@ class AdController extends Controller
         $categories = Category::all();
         $ad = Ad::with('user')->findOrFail($id);
         $product = Ad::find($ad->id)->product;
-        // $product = Product::findOrFail($ad->id);
         return view('ads.singleAd',compact('ad','categories','product'));
     }
 
@@ -69,7 +66,6 @@ class AdController extends Controller
   
         $ad->title = $request->title;
         $ad->description = $request->description;
-        $ad->price = $request->price;
         $ad->condition = $request->condition;
         $ad->phone = $request->phone;
         $ad->location = $request->location;
@@ -77,10 +73,10 @@ class AdController extends Controller
         $ad->save();
         $category = $request['category'];
         $ad->categories()->attach($category);
-        // $ad->save();
 
         $product = new Product();
         $product->name = $request->name;
+        $product->price = $request->price;
         $product->ad_id = $ad->id;
         $product->save();
 
@@ -117,11 +113,10 @@ class AdController extends Controller
     [
         'title' => 'required|min:2|max:255',
         'description' => 'required|string|max:1000',
-        'price' => 'required',
         'condition' => 'required',
         'phone' => 'required',
         'location' => 'required',
-         'name' => 'required'
+        'name' => 'required',
     ]);
 
     $data = Ad::findOrFail($id);
@@ -139,16 +134,17 @@ class AdController extends Controller
 
         $product = $data->product;
     
-        // $product = new Product;
         $product->ad_id = $data->id;
        
         $product->name = $request->input('name');
-   
+        // $product->price = $request->input('price');
+
+       
         $product->save();
    
 
-    session()->flash('success_message', 'Article successfully updated!');
-    return redirect('allAds')->with('success_message', 'Article successfully updated!');
+        session()->flash('success_message', 'Article successfully updated!');
+        return redirect('allAds')->with('success_message', 'Article successfully updated!');
 
     }
 }

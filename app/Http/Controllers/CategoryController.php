@@ -15,11 +15,9 @@ class CategoryController extends Controller
        $ads = Ad::has('product')->with('categories','product')->get();
        foreach($ads as $ad){
            $product = Ad::find($ad->id)->product;
-           // dd($product->name);
         }
     
         return view('ads.categoryAd', compact('ads','category','product'));
         }
-    
     }
 

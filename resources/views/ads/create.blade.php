@@ -47,7 +47,7 @@
             <div class="col-8">
             <input id="phone" type="number" class="form-control" name="phone" value="{{ old('phone') }}" autofocus>
         </div>
-    </div>
+        </div>
         <div class="form-group row">
             <label for="text" class="col-4 col-form-label">Location</label>
             <div class="col-8">
@@ -82,47 +82,4 @@
 </form>
 @endsection
 
-{{-- <script>
-(function() {
-    document.querySelector('#createForm').addEventListener('submit', function (e) {
-        e.preventDefault()
-            axios.post(this.action, {
-            'title': document.querySelector('#title').value,
-            'description': document.querySelector('#description').value,
-            'file': document.querySelector('#file').value,
-            'price': document.querySelector('#price').value,
-            'phone': document.querySelector('#phone').value,
-            'location': document.querySelector('#location').value,
-        })
-        .then((response) => {
-            // window.location.href = '{{ route('create') }}'
-            clearErrors()
-            this.reset()
-            this.insertAdjacentHTML('beforebegin', '<div class="alert alert-success" id="success">Article created successfully!</div>')
-            document.getElementById('#success').scrollIntoView()
-        })
-        .catch((error) => {
-            const errors = error.response.data.errors
-            const firstItem = Object.keys(errors)[0]
-            const firstItemDOM = document.getElementById(firstItem)
-            const firstErrorMessage = errors[firstItem][0]
-            // scroll to the error message
-            firstItemDOM.scrollIntoView()
-            clearErrors()
-            // show the error message
-            firstItemDOM.insertAdjacentHTML('afterend', `<div class="text-danger">${firstErrorMessage}</div>`)
-            // highlight the form control with the error
-            firstItemDOM.classList.add('border', 'border-danger')
-        });
-    });
-    function clearErrors() {
-        // remove all error messages
-        const errorMessages = document.querySelectorAll('.text-danger')
-        errorMessages.forEach((element) => element.textContent = '')
-        // remove all form controls with highlighted error text box
-        const formControls = document.querySelectorAll('.form-control')
-        formControls.forEach((element) => element.classList.remove('border', 'border-danger'))
-    }
-})();
-</script> --}}
 

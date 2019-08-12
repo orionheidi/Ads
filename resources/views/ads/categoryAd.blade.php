@@ -12,37 +12,12 @@
                     {{ session('success') }}
                 </div>
             @endif
-            {{-- <div class="form-group">
-                <label for="title" class="control-block">Find Category for the Ad:</label>
-                <select class="form-control">
-                    @foreach($categories as $category)
-                    {{-- <option value="{{ $category->id }}">{{ $category->name }}</option> --}}
-                  
-                    {{-- <a href="{{URL::route('single-ad',$category->id)}}">
-                        <option value="{{$category->id}}">{{ $category->name }}</option>
-                    </a>
-                    @endforeach
-        </select>
-            </div> --}} 
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                   aria-haspopup="true" aria-expanded="false">Pick Category
-                    <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li>@foreach($categories as $category)
-                            <a href="{{URL::route('category-ads',$category->id)}}">
-                                <option value="{{$category->id}}">{{ $category->name }}</option>
-                            </a>
-                        @endforeach
-                    </li>
-                </ul>
-            </li>
-            @foreach($ads as $ad)
+            @foreach($category->ads as $ad)
                 <p></p>
                 <h4 class="blog-post-title"><a href="{{ route('single-ad',['id' => $ad->id]) }}"> {{ $ad->title }}</a></h4>
                 <p class="blog-post-meta"> {{ $ad->created_at }}</p>
             @if($ad->user)
-                Created by: <h4 class="blog-post-title"><a href="{{ route('user-details',['id' => $ad->user->id]) }}"> {{ $ad->user->name }}</a></h4>
+                Created by: <h4 class="blog-post-title"> {{ $ad->user->name }}</h4>
             @endif
             {{-- <p class="blog-post-meta"> Product Name: {{ $ad->product->name }}</p> --}}
             <form method="POST" action="{{route('destroy', ['id' => $ad->id])}}">
@@ -60,14 +35,13 @@
                 <h6 class="border-bottom">Description: {{ $ad->description }}</h6>
                 <p class="blog-post-meta">Price: {{ $ad->price }}</p>
                 <div class="image-container">
-                    <img height="200" src="{{$ad->path}}" alt="">
+                    <img height="100" src="{{$ad->path}}" alt="">
                     </div>
                     <p></p>
                     <p class="blog-post-meta">Location: {{ $ad->location }}</p>
                     <p class="blog-post-meta">Phone: {{ $ad->phone }}</p>
             @endforeach
                 <p></p>
-                {{$ads->links()}}
             </div>           
     </div>
 </div> 

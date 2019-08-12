@@ -36,7 +36,7 @@ $factory->define(App\Ad::class, function(Faker $faker){
         "description" => $faker->realText(1000),
         "price" => $faker->randomDigit,
         "condition" => App\Ad::CONDITIONS[rand(0,count(App\Ad::CONDITIONS) - 1)],
-        "path" =>  $faker->image(public_path(Config::get('assets.images')) ,800, 600, [], []),
+        "path" =>  $faker->image('public/images',400,300, null, false),
         "phone" =>  $faker->phoneNumber,
         "location" =>  $faker->city,
     ];

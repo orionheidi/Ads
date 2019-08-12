@@ -5,7 +5,7 @@
             <div class="col-sm-10" >
                 <h4 class="pb-3 mb-4 font-italic border-bottom"> {{  $ad->title  }}</h4>
             @if($ad->user)
-                Created by: <h5 class="blog-post-title"> {{ $ad->user->name }}</h5>
+                Created by: <h5 class="blog-post-title"><a href="{{ route('user-details',['id' => $ad->user->id]) }}"> {{ $ad->user->name }}</a></h5>
             @endif
                 Created at: <div>{{  $ad->created_at  }}</div>
              <div>Description: {{  $ad->description  }}</div>
@@ -34,6 +34,3 @@
 </div>
 @endsection 
 
-<script>
-
-</script>

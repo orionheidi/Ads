@@ -17,16 +17,20 @@ class AdController extends Controller
     public function index()
     {
         $ads = Ad::with('user')->paginate(15);
-        return view('ads.allAds',compact('ads'));
+        $categories = Category::all();
+        return view('ads.allAds',compact('ads','categories'));
     }
 
     
     public function show($id)
     {
+        $categories = Category::all();
         $ad = Ad::with('user')->findOrFail($id);
         // $product = Product::findOrFail($ad->id);
-        return view('ads.singleAd',compact('ad'));
+        return view('ads.singleAd',compact('ad','categories'));
     }
+
+ 
 
     public function create()
     {
@@ -65,14 +69,10 @@ class AdController extends Controller
         $ad->phone = $request->phone;
         $ad->location = $request->location;
         $ad->user_id = auth()->user()->id;
+        $ad->save();
         $category = $request['category'];
         $ad->categories()->attach($category);
-        // $ad->categories()->attach($request->category_id);
-        // $category_name = $ad->category->name;
-        // $category = (int)$data['category'];
-        // // $category = $ad->category;
-        // $ad->category()->attach($category);
-        $ad->save();
+        // $ad->save();
 
         $product = new Product();
         $product->name = $request->name;

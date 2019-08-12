@@ -27,3 +27,5 @@ Route::get('/singleAd/{id}','AdController@show')->name('single-ad');
 Route::delete('/remove/{id}', 'AdController@destroy')->name('destroy')->middleware('auth');
 Route::get('/edit/{id}', 'AdController@edit')->name('edit')->middleware('auth');
 Route::put('/update-ad/{id}','AdController@update')->name('update-ad')->middleware('auth');
+Route::get('/categoryAds/{category_id}','CategoryController@show')->name('category-ads');
+Route::get('/user/{id}','UserController@show')->name('user-details');

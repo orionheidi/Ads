@@ -17,9 +17,11 @@
                 <h4 class="blog-post-title"><a href="{{ route('single-ad',['id' => $ad->id]) }}"> {{ $ad->title }}</a></h4>
                 Category Name: <p class="blog-post-meta"> {{ $category->name }}</p>
                 <p class="blog-post-meta"> {{ $ad->created_at }}</p>
-            @if($ad->user)
-                Created by: <h4 class="blog-post-title"> {{ $ad->user->name }}</h4>
-            @endif
+                <p class="blog-post-meta"> Product Name: {{ $product->name }}</p>
+                <p class="blog-post-meta"> Product Price: {{ $product->price }}</p>
+                @if($ad->user)
+                    Created by: <h4 class="blog-post-title"><a href="{{ route('user-details',['id' => $ad->user->id]) }}">  {{ $ad->user->name }}</a></h4>
+                @endif
             {{-- <p class="blog-post-meta"> Product Name: {{ $ad->product->name }}</p> --}}
             <form method="POST" action="{{route('destroy', ['id' => $ad->id])}}">
                 @csrf

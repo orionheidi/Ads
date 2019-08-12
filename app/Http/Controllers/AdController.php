@@ -16,9 +16,13 @@ class AdController extends Controller
     
     public function index()
     {
-        $ads = Ad::with('user','product')->paginate(15);
+        $ads = Ad::has('product')->with('user','product')->paginate(15);
         $categories = Category::all();
-        return view('ads.allAds',compact('ads','categories'));
+        foreach($ads as $ad){
+        $product = Ad::find($ad->id)->product;
+        // dd($product->name);
+        }
+        return view('ads.allAds',compact('ads','categories','product'));
     }
 
     
@@ -26,8 +30,9 @@ class AdController extends Controller
     {
         $categories = Category::all();
         $ad = Ad::with('user')->findOrFail($id);
+        $product = Ad::find($ad->id)->product;
         // $product = Product::findOrFail($ad->id);
-        return view('ads.singleAd',compact('ad','categories'));
+        return view('ads.singleAd',compact('ad','categories','product'));
     }
 
  

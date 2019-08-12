@@ -11,7 +11,7 @@ class ProductTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Product::class,100)->create()->each(function($product){
+        factory(App\Product::class,300)->create()->each(function($product){
             $ad = App\Ad::inRandomOrder()->first();
             $product->ad_id = $ad->id;
             $product->save();

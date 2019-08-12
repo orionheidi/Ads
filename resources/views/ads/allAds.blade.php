@@ -39,12 +39,17 @@
             </li>
             @foreach($ads as $ad)
                 <p></p>
+                <p class="blog-post-meta"> {{ $ad->id }}</p>
                 <h4 class="blog-post-title"><a href="{{ route('single-ad',['id' => $ad->id]) }}"> {{ $ad->title }}</a></h4>
                 <p class="blog-post-meta"> {{ $ad->created_at }}</p>
             @if($ad->user)
                 Created by: <h4 class="blog-post-title"><a href="{{ route('user-details',['id' => $ad->user->id]) }}"> {{ $ad->user->name }}</a></h4>
             @endif
-            {{-- <p class="blog-post-meta"> Product Name: {{ $ad->product->name }}</p> --}}
+            <p class="blog-post-meta"> Product Name: {{ $product->name }}</p>
+            <p class="blog-post-meta"> Product Price: {{ $product->price }}</p>
+            <div class="clearfix">
+                    <a href="{{ route('product-add-cart',['id' => $product->id]) }}" class="btn btn-dark pull-right" role="button">Add to Cart</a>
+            </div>
             <form method="POST" action="{{route('destroy', ['id' => $ad->id])}}">
                 @csrf
                 @method('DELETE')
@@ -57,8 +62,9 @@
                     <button type="submit" id="editAd" class="btn btn-success">Edit Ad</button>
             </form>
             <br>
+            {{-- <h4 class="blog-post-title"> Product Name: {{ $ad->product->name }}</h4> --}}
                 <h6 class="border-bottom">Description: {{ $ad->description }}</h6>
-                <p class="blog-post-meta">Price: {{ $ad->price }}</p>
+                {{-- <p class="blog-post-meta">Price: {{ $ad->price }}</p> --}}
                 <div class="image-container">
                     <img height="200" src="{{$ad->path}}" alt="">
                     </div>

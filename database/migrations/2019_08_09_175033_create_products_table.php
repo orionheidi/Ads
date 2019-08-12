@@ -16,6 +16,7 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->decimal('price');
             $table->unsignedInteger('ad_id')->nullable();
             $table->foreign('ad_id')->references('id')->on('ads')->onDelete('cascade');
             $table->timestamps();

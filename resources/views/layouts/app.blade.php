@@ -16,6 +16,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -24,11 +25,16 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/allAds') }}">LIST OF ADS
+                <a class="navbar-brand" href="{{ url('/allAds') }}">List Of Ads    
                     {{-- {{ config('app.name', 'Laravel') }} --}}
                 </a>
-                <a class="navbar-brand" href="{{ url('/create') }}">CREATE AD
+                <a class="navbar-brand" href="{{ url('/create') }}">Create Ad
                     {{-- {{ config('app.name', 'Laravel') }} --}}
+                </a>
+            
+                <a class="navbar-brand" href="{{ route('product-shopping-cart') }}">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> Shopping Cart
+                <span class ='badge'>{{ Session::has('cart') ? Session::get('cart')->totalQty : ''}}</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

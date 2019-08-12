@@ -29,22 +29,23 @@
 
             .flex-center {
                 align-items: center;
+                display: block; 
                 justify-content: center;
             } 
 
-            .flex-new {
+            /* .flex-new {
                   display: flex; 
-            }
-
-            .position-ref {
+            } */
+/* 
+             .position-ref {
                 position: relative;
-            } 
+            }  */
 
             .top-right {
                 position: absolute;
                 right: 10px;
                 top: 18px;
-            }
+            } 
 
             .content {
                 text-align: center;
@@ -102,7 +103,6 @@
                     <th>ID</th>
                     <th>Ad Title</th>
                     <th>Description</th>
-                    <th>Price</th>
                     <th>Location</th>
                     <th>Image</th>
                 </tr>

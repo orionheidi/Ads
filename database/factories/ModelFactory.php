@@ -34,7 +34,6 @@ $factory->define(App\Ad::class, function(Faker $faker){
     return[
         "title" => $faker->realText(50),
         "description" => $faker->realText(1000),
-        "price" => $faker->randomDigit,
         "condition" => App\Ad::CONDITIONS[rand(0,count(App\Ad::CONDITIONS) - 1)],
         "path" =>  $faker->image('public/images',400,300, null, false),
         "phone" =>  $faker->phoneNumber,
@@ -45,6 +44,7 @@ $factory->define(App\Ad::class, function(Faker $faker){
  $factory->define(App\Product::class, function(Faker $faker){       
     return[
         "name" => App\Product::PRODUCTS[rand(0,count(App\Product::PRODUCTS) - 1)],
+        "price" => $faker->randomDigit,
     ];
  });
 

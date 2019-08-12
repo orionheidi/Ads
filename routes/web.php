@@ -32,3 +32,5 @@ Route::get('/user/{id}','UserController@show')->name('user-details');
 Route::get('/search','UserController@index')->name('articles-by-user');
 // Route::get('/search','SearchController@index');
 Route::get('/search','SearchController@search');
+Route::get('/add-to-cart/{id}','ProductController@getAddToCart')->name('product-add-cart');
+Route::get('/productShoppingCart','ProductController@getCart')->name('product-shopping-cart');

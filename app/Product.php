@@ -9,11 +9,11 @@ class Product extends Model
     const PRODUCTS = ['mac','lenovo','shirt','dress','pants', 'table','chair','sofa','kitchen', 'ios', 'asos','suit'];
 
     protected $fillable = [
-        'name'
+        'name','price'
     ];
 
     public function ad()
     {
-        return $this->belongsTo('App\Ad');
+        return $this->belongsTo('App\Ad','ad_id');
     }
 }

@@ -17,7 +17,6 @@ class CreateAdsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('description');
-            $table->decimal('price');
             $table->string('condition');
             $table->string('path');
             $table->unsignedInteger('user_id')->nullable();

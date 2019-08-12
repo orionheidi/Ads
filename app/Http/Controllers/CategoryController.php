@@ -12,9 +12,13 @@ class CategoryController extends Controller
     {
        $category = Category::findOrFail($id);
     
-       $ads = Ad::with('categories')->get();
+       $ads = Ad::has('product')->with('categories','product')->get();
+       foreach($ads as $ad){
+           $product = Ad::find($ad->id)->product;
+           // dd($product->name);
+        }
     
-            return view('ads.categoryAd', compact('ads','category'));
+        return view('ads.categoryAd', compact('ads','category','product'));
         }
     
     }

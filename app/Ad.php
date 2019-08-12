@@ -24,7 +24,7 @@ class Ad extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class,'category_id','ad_id');
+        return $this->belongsToMany(Category::class);
     }
 
     public function getPathAttribute($value){

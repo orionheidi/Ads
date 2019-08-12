@@ -14,4 +14,8 @@ class Category extends Model
     {
         return $this->hasMany(Ad::class,'category_id', 'ad_id');
     }
+
+    // public function categories() {
+    //     return $this->belongsToMany('App\Category');    
+    // }
 }

@@ -11,13 +11,11 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    
+    protected $table = 'users';
+
     protected $fillable = [
-        'name', 'email', 'password','role_id'
+        'name', 'email', 'password'
     ];
 
     /**
@@ -40,7 +38,7 @@ class User extends Authenticatable
 
     public function roles()
     {
-        return $this->belongsToMany('App\Role');
+        return $this->belongsToMany('App\Role','role_users','user_id','role_id');
     }
 
 

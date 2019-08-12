@@ -4,7 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <meta name="_token" content="{{ csrf_token() }}">
+        <title>Live Search</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -26,13 +29,16 @@
 
             .flex-center {
                 align-items: center;
-                display: flex;
                 justify-content: center;
+            } 
+
+            .flex-new {
+                  display: flex; 
             }
 
             .position-ref {
                 position: relative;
-            }
+            } 
 
             .top-right {
                 position: absolute;
@@ -42,13 +48,11 @@
 
             .content {
                 text-align: center;
-            }
+                
+            } 
 
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
+        
+             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
                 font-size: 13px;
@@ -56,17 +60,18 @@
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
-            }
+            } 
 
             .m-b-md {
                 margin-bottom: 30px;
-            }
+                margin-top: 100px;
+            }   
         </style>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
-                <div class="top-right links">
+                <div class="top-right links flex-new">
                     @auth
                         <a href="{{ url('/allAds') }}">LIST OF ADS</a>
                     @else
@@ -78,13 +83,57 @@
                     @endauth
                 </div>
             @endif
-
+        
             <div class="content">
                 <div class="title m-b-md">
-                    ADS APP
+                <div class="container">
+                <div class="row">
+                <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>Search Ads </h3>
                 </div>
-
+                <div class="panel-body">
+                <div class="form-group">
+                    <input type="text" class="form-controller" id="search" name="search"></input>
+                </div>
+                    <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Ad Title</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Location</th>
+                    <th>Image</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                </table>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
             </div>
         </div>
+    </body>
+</html>
+        <script type="text/javascript">
+            $('#search').on('keyup',function(){
+            $value=$(this).val();
+            $.ajax({
+            type : 'get',
+            url : '{{URL::to('search')}}',
+            data:{'search':$value},
+            success:function(data){
+            $('tbody').html(data);
+            }
+            });
+            })
+            </script>
+            <script type="text/javascript">
+            $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+        </script>
     </body>
 </html>

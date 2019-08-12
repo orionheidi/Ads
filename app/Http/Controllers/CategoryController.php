@@ -8,15 +8,14 @@ use App\Category;
 
 class CategoryController extends Controller
 {
-    public function show($category_id)
+    public function show($id)
     {
-       $category = Category::findOrFail($category_id);
+       $category = Category::findOrFail($id);
     
-        if($category){
-           $ads = Ad::where('category_id',$category_id)->get();
+       $asd = Ad::with('categories')->get();
     
-            return view('ads.categoryAd', compact('ads'));
+            return view('ads.categoryAd', compact('ads','categories'));
         }
     
     }
-}
+
